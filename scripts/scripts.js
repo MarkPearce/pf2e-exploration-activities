@@ -45,7 +45,7 @@ export function explorationActivity(actor, tokenID) {
         label: "Select",
         callback: (html) => {
           selectedActivity =
-            "<h3>I will <b>" + html.find("#activity")[0].value + "</b></h3>";
+            "I will <b>" + html.find("#activity")[0].value + "</b>.";
           generateChat(actor, selectedActivity);
           applyEffect(actor, html.find("#activity")[0].value);
         },
@@ -54,7 +54,7 @@ export function explorationActivity(actor, tokenID) {
         icon: "<i class='fas fa-lock-times'></i>",
         label: "Cancel",
         callback: () => {
-          selectedActivity = "<h3>I will do nothing in particular.</h3>";
+          selectedActivity = "I will do nothing in particular.";
           generateChat(actor, selectedActivity);
           applyEffect(actor, "Unspecified");
         },
@@ -86,29 +86,29 @@ export function explorationActivity(actor, tokenID) {
         "Compendium.pf2e-exploration-effects.exploration-effects.N8vpuGy4TzU10y8E",
       "Cover Tracks":
         "Compendium.pf2e-exploration-effects.exploration-effects.F6vJYLZTWDpnrnCZ",
-      Defend:
+      "Defend":
         "Compendium.pf2e-exploration-effects.exploration-effects.GYOyFj4ziZX060rZ",
       "Detect Magic":
         "Compendium.pf2e-exploration-effects.exploration-effects.OjRHL0B4WAUUQc13",
       "Follow the Expert":
         "ompendium.pf2e-exploration-effects.exploration-effects.V347nnVBGDrVWh7k",
-      Hustle:
+      "Hustle":
         "Compendium.pf2e-exploration-effects.exploration-effects.vNUrKvoOSvEnqzhM",
-      Investigate:
+      "Investigate":
         "Compendium.pf2e-exploration-effects.exploration-effects.tDsgl8YmhZbx2May",
       "Repeat a Spell":
         "Compendium.pf2e-exploration-effects.exploration-effects.kh1QdKkvbNZ0qBsQ",
-      Scout:
+      "Scout":
         "Compendium.pf2e-exploration-effects.exploration-effects.mGFBHM1lvHNZ9BsH",
-      Search:
+      "Search":
         "Compendium.pf2e-exploration-effects.exploration-effects.XiVLHjg5lQVMX8Fj",
-      Track:
+      "Track":
         "Compendium.pf2e-exploration-effects.exploration-effects.OcCXjJab7rSR3mDf",
-      Unspecified:
+      "Unspecified":
         "Compendium.pf2e-exploration-effects.exploration-effects.CcyA2CzeaTBWHNHP",
     };
     let effect = explorationEffects[effectName];
     let item = (await fromUuid(effect)).toObject();
-    await token.actor.createEmbeddedDocuments("Item", [item]);
+    await Array.from(canvas.tokens.placeables).find(token => token.data.actorId === actor.token.actorId).actor.createEmbeddedDocuments("Item", [item]);
   }
 }
